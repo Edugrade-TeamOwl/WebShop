@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WebShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Produkter</h1>
+
+
+<div class="row align-items-start">
+    @foreach (var item in Model) {        
+    <div class='col-md-4 col-sm-6'>
+        <div class='product-card rounded shadow p-2'>
+            <h3>@Html.DisplayFor(modelItem => item.ProductName)</h3>
+            <p>@Html.DisplayFor(modelItem => item.ProductDisctiption)</p>
+            <p>@Html.DisplayFor(modelItem => item.ProductPrice)Kr</p>
+            <button class="btn btn-dark">Lägg i kundvagn</button>
+        </div>
+    </div>
+    }
+</div>
+
+

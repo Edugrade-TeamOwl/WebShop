@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebShop.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using WebShop.Areas.Identity.Data;
 namespace WebShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230525131149_updatedOrderTable")]
+    partial class updatedOrderTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,46 +237,6 @@ namespace WebShop.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "eda54eeb-1409-4a68-9a84-c2d231eb716f",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "d7f63850-891d-491f-949c-4d942fd02760",
-                            Email = "kalle@havenoemail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Karl",
-                            IsAdmin = true,
-                            LastName = "Karlsson",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "KALLE@HAVENOEMAIL.COM",
-                            NormalizedUserName = "OWNER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOdZSi+/qZPkIssqxS9fhXbl9b9AQpzY+87r49Ibnib+5cY86s0H3uMnLTraE4UFuA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "b3e17025-43b6-4081-b780-34a1c7ef0dcd",
-                            TwoFactorEnabled = false,
-                            UserName = "Owner"
-                        },
-                        new
-                        {
-                            Id = "1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "aff2190b-85fb-40b9-a752-423960748e4c",
-                            Email = "jens@havenoemail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Jens",
-                            IsAdmin = false,
-                            LastName = "Jensson",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "JENS@HAVENOEMAIL.COM",
-                            NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN5rtp6ubz4Pb7lHV7gv2TVV2KQfs0N4UxJrp4RLJi0uvWcDP6fHsxBjzliZIF4+GA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "13a91933-fd38-41d6-a1d5-11562022b486",
-                            TwoFactorEnabled = false,
-                            UserName = "User"
-                        });
                 });
 
             modelBuilder.Entity("WebShop.Models.Order", b =>
@@ -284,59 +247,15 @@ namespace WebShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<string>("Adress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OrderedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-
-                    b.HasData(
-                        new
-                        {
-                            OrderId = 1,
-                            Adress = "testvägen1",
-                            City = "teststaden",
-                            OrderedAt = new DateTime(2023, 5, 25, 16, 25, 8, 569, DateTimeKind.Local).AddTicks(6326),
-                            UserId = "1",
-                            ZipCode = "123 45"
-                        },
-                        new
-                        {
-                            OrderId = 2,
-                            Adress = "testvägen1",
-                            City = "teststaden",
-                            OrderedAt = new DateTime(2023, 5, 25, 16, 25, 8, 569, DateTimeKind.Local).AddTicks(6370),
-                            UserId = "1",
-                            ZipCode = "123 45"
-                        },
-                        new
-                        {
-                            OrderId = 3,
-                            Adress = "testvägen1",
-                            City = "teststaden",
-                            OrderedAt = new DateTime(2023, 5, 25, 16, 25, 8, 569, DateTimeKind.Local).AddTicks(6373),
-                            UserId = "1",
-                            ZipCode = "123 45"
-                        });
                 });
 
             modelBuilder.Entity("WebShop.Models.OrderDetail", b =>
@@ -353,9 +272,6 @@ namespace WebShop.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ProductQuantity")
-                        .HasColumnType("int");
-
                     b.HasKey("OrderDetailId");
 
                     b.HasIndex("OrderId");
@@ -363,43 +279,6 @@ namespace WebShop.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
-
-                    b.HasData(
-                        new
-                        {
-                            OrderDetailId = 1,
-                            OrderId = 1,
-                            ProductId = new Guid("4cb67407-0437-4bc6-abd0-0d2dea6d6e91"),
-                            ProductQuantity = 2
-                        },
-                        new
-                        {
-                            OrderDetailId = 2,
-                            OrderId = 1,
-                            ProductId = new Guid("01c708fe-ffba-4537-99b0-5788ffd1edf0"),
-                            ProductQuantity = 5
-                        },
-                        new
-                        {
-                            OrderDetailId = 3,
-                            OrderId = 1,
-                            ProductId = new Guid("8948c2b5-7db0-4034-9d43-312065565262"),
-                            ProductQuantity = 4
-                        },
-                        new
-                        {
-                            OrderDetailId = 4,
-                            OrderId = 2,
-                            ProductId = new Guid("4cb67407-0437-4bc6-abd0-0d2dea6d6e91"),
-                            ProductQuantity = 1
-                        },
-                        new
-                        {
-                            OrderDetailId = 5,
-                            OrderId = 3,
-                            ProductId = new Guid("8948c2b5-7db0-4034-9d43-312065565262"),
-                            ProductQuantity = 3
-                        });
                 });
 
             modelBuilder.Entity("WebShop.Models.Product", b =>
@@ -421,29 +300,6 @@ namespace WebShop.Migrations
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = new Guid("4cb67407-0437-4bc6-abd0-0d2dea6d6e91"),
-                            ProductDisctiption = "Drink",
-                            ProductName = "Pepsi",
-                            ProductPrice = 10m
-                        },
-                        new
-                        {
-                            ProductId = new Guid("01c708fe-ffba-4537-99b0-5788ffd1edf0"),
-                            ProductDisctiption = "Meat",
-                            ProductName = "Pork",
-                            ProductPrice = 97m
-                        },
-                        new
-                        {
-                            ProductId = new Guid("8948c2b5-7db0-4034-9d43-312065565262"),
-                            ProductDisctiption = "Fruit",
-                            ProductName = "Apple",
-                            ProductPrice = 3m
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
