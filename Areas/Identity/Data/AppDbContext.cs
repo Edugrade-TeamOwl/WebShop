@@ -23,6 +23,8 @@ public class AppDbContext : IdentityDbContext<IdentityUser>
     }
 
     public DbSet<Product> Products => Set<Product>();
+
+    public DbSet<ShoppingCart> ShoppingCart { get; set; } = default!;
 }
 
 
