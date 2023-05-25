@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Produkter</h1>
+
+
+<div class="row align-items-start">
+    @foreach (var item in Model) {        
+    <div class='col-md-4 col-sm-6'>
+        <div class='product-card rounded shadow p-2'>
+            <h3>@Html.DisplayFor(modelItem => item.ProductName)</h3>
+            <p>@Html.DisplayFor(modelItem => item.ProductDisctiption)</p>
+            <p>@Html.DisplayFor(modelItem => item.ProductPrice)Kr</p>
+            
+            <form method="post" asp-action="AddToCart" asp-controller="ShoppingCart">
+                <input type="hidden" name="ProductId" value="@item.ProductId" />
+                <input type="hidden" name="ProductName" value="@item.ProductName" />
+                <input type="hidden" name="ProductDescription" value="@item.ProductDisctiption" />
+                <input type="hidden" name="ProductPrice" value="@item.ProductPrice" />
+                <!-- Add other input fields for additional properties if needed -->
+                <input type="submit" value="Add to Cart" />
+            </form>
+        </div>
+    </div>
+    }
+</div>
+
+

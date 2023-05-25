@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Kundvagn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kundvagn</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            decimal totalPrice = 0;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ProductName
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+
+            </tr>
+
+            totalPrice += item.ProductPrice;           
+        }
+    </tbody>
+    
+</table>
+<h4>Totalt: @totalPrice Kr</h4>
