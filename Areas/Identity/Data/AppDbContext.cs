@@ -21,8 +21,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<ApplicationUser>().HasData(
             new ApplicationUser
             {
-                UserName="Owner", 
-                NormalizedUserName="OWNER" , 
+                UserName= "kalle@havenoemail.com", 
+                NormalizedUserName= "KALLE@HAVENOEMAIL.COM", 
                 Email="kalle@havenoemail.com", 
                 NormalizedEmail="KALLE@HAVENOEMAIL.COM", 
                 FirstName="Karl", 
@@ -35,8 +35,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
             new ApplicationUser
             {
                 Id="1",
-                UserName = "User",
-                NormalizedUserName = "USER",
+                UserName = "jens@havenoemail.com",
+                NormalizedUserName = "JENS@HAVENOEMAIL.COM",
                 Email = "jens@havenoemail.com",
                 NormalizedEmail = "JENS@HAVENOEMAIL.COM",
                 FirstName = "Jens",
@@ -78,6 +78,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Product> Products { get; set; }//=> Set<Product>();
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<ShoppingCart> ShoppingCart { get; set; } = default!;
 }
 
 
