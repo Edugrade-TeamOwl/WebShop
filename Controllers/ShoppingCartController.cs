@@ -40,31 +40,28 @@ namespace WebShop.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> Checkout(List <Product> product)
+        public IActionResult Checkout(Order order)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProcessOrder(Order order)
         {
             var user = await _userManager.GetUserAsync(User);
-            var order = new Order
-            {
-                Adress="",
-                City="",
-                ZipCode="",
-                OrderedAt=DateTime.Now,
-                UserId=user.Id
-            };
-            _appDbContext.Add(order);
-            var orderid = await _appDbContext.SaveChangesAsync();
-            List <OrderDetail> orderdetail = new List<OrderDetail>();
 
-            foreach (var item in product)
-            {
-                var detail = new OrderDetail { ProductId = item.ProductId, ProductQuantity = 1, OrderId = orderid };
-                orderdetail.Add(detail);
-            }
-            _appDbContext.AddRange(orderdetail);
+            order.OrderedAt = DateTime.Now;
+            order.UserId = user.Id;
+
+            _appDbContext.Add(order);
             await _appDbContext.SaveChangesAsync();
+
+            // Transaction Completed
 
             return RedirectToAction("CheckoutComplete");
         }
+
+
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = "Tack för din beställning";

@@ -169,7 +169,7 @@ namespace WebShop.Migrations
 
                     b.HasKey("ShoppingCartId");
 
-                    b.ToTable("ShoppingCart");
+                    b.ToTable("ShoppingCart", (string)null);
                 });
 
             modelBuilder.Entity("WebShop.Areas.Identity.Data.ApplicationUser", b =>
@@ -318,7 +318,7 @@ namespace WebShop.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
 
                     b.HasData(
                         new
@@ -373,7 +373,7 @@ namespace WebShop.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
 
                     b.HasData(
                         new
@@ -431,7 +431,7 @@ namespace WebShop.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
