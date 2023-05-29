@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WebShop.Areas.Identity.Data;
 using WebShop.Models;
 
 namespace WebShop.Controllers
@@ -6,10 +9,14 @@ namespace WebShop.Controllers
     public class ShoppingCartController : Controller
     {
         private readonly ShoppingCart shoppingCart;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly AppDbContext _appDbContext;
 
-        public ShoppingCartController(ShoppingCart shoppingCart)
+        public ShoppingCartController(AppDbContext appDbContext, UserManager<ApplicationUser> userManager, ShoppingCart shoppingCart)
         {
             this.shoppingCart = shoppingCart;
+            _userManager = userManager;
+            _appDbContext = appDbContext;
         }
         public IActionResult ListCart()
         {
@@ -31,6 +38,12 @@ namespace WebShop.Controllers
             
             // Redirect to a different view or perform any other actions
             return RedirectToAction("ListCart");
+        }
+        public IActionResult Checkout()
+        {
+            
+
+            return View();
         }
 
     }

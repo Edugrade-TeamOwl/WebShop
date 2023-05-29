@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebShop.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using WebShop.Areas.Identity.Data;
 namespace WebShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230529174702_updatednames")]
+    partial class updatednames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,9 +252,9 @@ namespace WebShop.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "743fce31-3649-4314-8631-7dce26d3bd4b",
+                            Id = "3309d8e1-7f58-49cc-a125-a7345315831a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "66217584-3a01-48f7-b15d-82d5ddd5048c",
+                            ConcurrencyStamp = "2f290534-c96b-4fbc-9cdf-d138022fa98e",
                             Email = "kalle@havenoemail.com",
                             EmailConfirmed = true,
                             FirstName = "Karl",
@@ -260,9 +263,9 @@ namespace WebShop.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KALLE@HAVENOEMAIL.COM",
                             NormalizedUserName = "KALLE@HAVENOEMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKF5a1fQCXoj2yEKjplZG5CbvVrGFkoqAdzgRJitRIRitkBNIw1Osg5dc0bv2QWq/Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPXOBt+K8FNSLXv9OcGFdUQlxeUV+ejqIXm+vCWIeD+wwL/q9Swxr5KsHBkDlcYVFA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0e5ef78b-9d24-4e9c-a03f-0b07726c1bb5",
+                            SecurityStamp = "4ecf603d-0f78-4294-90d4-bcc87a7fdf4e",
                             TwoFactorEnabled = false,
                             UserName = "kalle@havenoemail.com"
                         },
@@ -270,7 +273,7 @@ namespace WebShop.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "622bb628-c10a-4b13-a5e6-fc94ba0f02f1",
+                            ConcurrencyStamp = "d6e59941-12b4-40ab-a77b-efccf91ff9e7",
                             Email = "jens@havenoemail.com",
                             EmailConfirmed = true,
                             FirstName = "Jens",
@@ -279,9 +282,9 @@ namespace WebShop.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JENS@HAVENOEMAIL.COM",
                             NormalizedUserName = "JENS@HAVENOEMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEk5THcFRjhkqlee25GZJ6H0bF68epLTzQfQSHvoNtwc8jn/kjxhKRQ3JwMXAyhvww==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFyZJwtvBX0YfEFnDOUZD++fHxcyfu6AiKzXzpFe3Q47osHy9fk1UY/DZ+Hxm1Zorg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9728778d-0779-49dd-85a7-2cbe23e43c45",
+                            SecurityStamp = "0c561c29-bebc-46cb-84a9-68a19f5b426b",
                             TwoFactorEnabled = false,
                             UserName = "jens@havenoemail.com"
                         });
@@ -300,14 +303,6 @@ namespace WebShop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -334,9 +329,7 @@ namespace WebShop.Migrations
                             OrderId = 1,
                             Adress = "testvägen1",
                             City = "teststaden",
-                            FirstName = "Jens",
-                            LastName = "Jensson",
-                            OrderedAt = new DateTime(2023, 5, 29, 19, 54, 9, 351, DateTimeKind.Local).AddTicks(1102),
+                            OrderedAt = new DateTime(2023, 5, 29, 19, 47, 1, 953, DateTimeKind.Local).AddTicks(1590),
                             UserId = "1",
                             ZipCode = "123 45"
                         },
@@ -345,9 +338,7 @@ namespace WebShop.Migrations
                             OrderId = 2,
                             Adress = "testvägen1",
                             City = "teststaden",
-                            FirstName = "Jens",
-                            LastName = "Jensson",
-                            OrderedAt = new DateTime(2023, 5, 29, 19, 54, 9, 351, DateTimeKind.Local).AddTicks(1146),
+                            OrderedAt = new DateTime(2023, 5, 29, 19, 47, 1, 953, DateTimeKind.Local).AddTicks(1641),
                             UserId = "1",
                             ZipCode = "123 45"
                         },
@@ -356,9 +347,7 @@ namespace WebShop.Migrations
                             OrderId = 3,
                             Adress = "testvägen1",
                             City = "teststaden",
-                            FirstName = "Jens",
-                            LastName = "Jensson",
-                            OrderedAt = new DateTime(2023, 5, 29, 19, 54, 9, 351, DateTimeKind.Local).AddTicks(1149),
+                            OrderedAt = new DateTime(2023, 5, 29, 19, 47, 1, 953, DateTimeKind.Local).AddTicks(1644),
                             UserId = "1",
                             ZipCode = "123 45"
                         });
@@ -394,35 +383,35 @@ namespace WebShop.Migrations
                         {
                             OrderDetailId = 1,
                             OrderId = 1,
-                            ProductId = new Guid("f81606c5-09fe-4a0f-80c5-7f5273232857"),
+                            ProductId = new Guid("387f5f0b-2dfa-4ddb-b088-b5803f1b8c46"),
                             ProductQuantity = 2
                         },
                         new
                         {
                             OrderDetailId = 2,
                             OrderId = 1,
-                            ProductId = new Guid("f37cfd7e-037d-4cbc-bab3-99d53975e354"),
+                            ProductId = new Guid("ef6b200f-7f2a-4b16-adb6-7030e9a8a297"),
                             ProductQuantity = 5
                         },
                         new
                         {
                             OrderDetailId = 3,
                             OrderId = 1,
-                            ProductId = new Guid("a27d2247-c0d4-488a-9c6d-297217ea433b"),
+                            ProductId = new Guid("89bd722f-ac7c-4b13-b02e-6f172ad02b5c"),
                             ProductQuantity = 4
                         },
                         new
                         {
                             OrderDetailId = 4,
                             OrderId = 2,
-                            ProductId = new Guid("f81606c5-09fe-4a0f-80c5-7f5273232857"),
+                            ProductId = new Guid("387f5f0b-2dfa-4ddb-b088-b5803f1b8c46"),
                             ProductQuantity = 1
                         },
                         new
                         {
                             OrderDetailId = 5,
                             OrderId = 3,
-                            ProductId = new Guid("a27d2247-c0d4-488a-9c6d-297217ea433b"),
+                            ProductId = new Guid("89bd722f-ac7c-4b13-b02e-6f172ad02b5c"),
                             ProductQuantity = 3
                         });
                 });
@@ -450,21 +439,21 @@ namespace WebShop.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = new Guid("f81606c5-09fe-4a0f-80c5-7f5273232857"),
+                            ProductId = new Guid("387f5f0b-2dfa-4ddb-b088-b5803f1b8c46"),
                             ProductDisctiption = "Drink",
                             ProductName = "Pepsi",
                             ProductPrice = 10m
                         },
                         new
                         {
-                            ProductId = new Guid("f37cfd7e-037d-4cbc-bab3-99d53975e354"),
+                            ProductId = new Guid("ef6b200f-7f2a-4b16-adb6-7030e9a8a297"),
                             ProductDisctiption = "Meat",
                             ProductName = "Pork",
                             ProductPrice = 97m
                         },
                         new
                         {
-                            ProductId = new Guid("a27d2247-c0d4-488a-9c6d-297217ea433b"),
+                            ProductId = new Guid("89bd722f-ac7c-4b13-b02e-6f172ad02b5c"),
                             ProductDisctiption = "Fruit",
                             ProductName = "Apple",
                             ProductPrice = 3m

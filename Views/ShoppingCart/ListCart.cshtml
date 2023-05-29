@@ -1,47 +1,51 @@
-﻿@model IEnumerable<WebShop.Models.Product>
+﻿@model IList<WebShop.Models.Product>
 
 @{
     ViewData["Title"] = "Kundvagn";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Kundvagn</h1>
+@using (Html.BeginForm("Checkout", "ShoppingCart", FormMethod.Post))
+{
+    <h1>Kundvagn</h1>
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.ProductPrice)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @{
-            decimal totalPrice = 0;
-        }
-        @foreach (var item in Model)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @item.ProductName
-                </td>
+                <th>
+                    Product
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductPrice)
-                </td>
-
+                <th>
+                    Pris
+                </th>
+                <th></th>
             </tr>
+        </thead>
+        <tbody>
 
-            totalPrice += item.ProductPrice;           
-        }
-    </tbody>
-    
-</table>
-<h4>Totalt: @totalPrice Kr</h4>
+            @{
+                decimal totalPrice = 0;
+            }
+            @for (var i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => @Model[i].ProductName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => @Model[i].ProductPrice)
+                    </td>
+                </tr>
+
+                totalPrice += @Model[i].ProductPrice;
+            }
+        </tbody>
+
+    </table>
+
+    <h4>Totalt: @totalPrice Kr</h4>
+    <input class="btn btn-primary" type="submit" value="Till Betalning" />
+}
