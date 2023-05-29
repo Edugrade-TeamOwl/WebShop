@@ -9,7 +9,5 @@ namespace WebShop.ViewModels.DTO
         public string City { get; set; }
         public string ZipCode { get; set; }
         public string Adress { get; set; }
-
-        public List<Product> cartItems;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebShop.Areas.Identity.Data;
 using WebShop.Models;
 
@@ -38,37 +39,12 @@ namespace WebShop.Controllers
             // Redirect to a different view or perform any other actions
             return RedirectToAction("ListCart");
         }
-
-        [HttpPost]
-        public async Task <IActionResult> Checkout(List <Product> product)
+        public IActionResult Checkout()
         {
-            var user = await _userManager.GetUserAsync(User);
-            var order = new Order
-            {
-                Adress="",
-                City="",
-                ZipCode="",
-                OrderedAt=DateTime.Now,
-                UserId=user.Id
-            };
-            _appDbContext.Add(order);
-            var orderid = await _appDbContext.SaveChangesAsync();
-            List <OrderDetail> orderdetail = new List<OrderDetail>();
+            
 
-            foreach (var item in product)
-            {
-                var detail = new OrderDetail { ProductId = item.ProductId, ProductQuantity = 1, OrderId = orderid };
-                orderdetail.Add(detail);
-            }
-            _appDbContext.AddRange(orderdetail);
-            await _appDbContext.SaveChangesAsync();
-
-            return RedirectToAction("CheckoutComplete");
-        }
-        public IActionResult CheckoutComplete()
-        {
-            ViewBag.CheckoutCompleteMessage = "Tack för din beställning";
             return View();
         }
+
     }
 }

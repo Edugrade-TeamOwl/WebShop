@@ -55,9 +55,9 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
             new Product { ProductId = ProductId3 , ProductName = "Apple", ProductPrice = 3, ProductDisctiption = "Fruit" });
 
         builder.Entity<Order>().HasData(
-            new Order { OrderId = 1, OrderedAt = DateTime.Now, Adress = "testvägen1", City = "teststaden", ZipCode = "123 45", UserId = "1" },
-            new Order { OrderId = 2, OrderedAt = DateTime.Now, Adress = "testvägen1", City = "teststaden", ZipCode = "123 45", UserId = "1" },
-            new Order { OrderId = 3, OrderedAt = DateTime.Now, Adress = "testvägen1", City = "teststaden", ZipCode = "123 45", UserId = "1" }
+            new Order { OrderId = 1, OrderedAt = DateTime.Now, Adress = "testvägen1", City = "teststaden", ZipCode = "123 45", UserId = "1" , FirstName = "Jens" , LastName = "Jensson" },
+            new Order { OrderId = 2, OrderedAt = DateTime.Now, Adress = "testvägen1", City = "teststaden", ZipCode = "123 45", UserId = "1" , FirstName = "Jens" , LastName = "Jensson" },
+            new Order { OrderId = 3, OrderedAt = DateTime.Now, Adress = "testvägen1", City = "teststaden", ZipCode = "123 45", UserId = "1" , FirstName = "Jens" , LastName = "Jensson" }
             );
 
         builder.Entity<OrderDetail>().HasData(

@@ -13,6 +13,8 @@ namespace WebShop.Models
         public int OrderId { get; set; }
         //[Precision(18,2)]
         //public decimal TotalOrderAmount { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string City { get; set; }
         public string ZipCode { get; set; }
         public string Adress { get; set; }
