@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,18 +14,28 @@ namespace WebShop.Controllers
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ProductController(AppDbContext context)
+        public ProductController(AppDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Product
         public async Task<IActionResult> Index()
         {
-              return _context.Products != null ? 
-                          View(await _context.Products.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.Products'  is null.");
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null && user.IsAdmin)
+            {
+                return _context.Products != null ?
+                        View(await _context.Products.ToListAsync()) :
+                        Problem("Entity set 'AppDbContext.Products'  is null.");
+            }
+            else
+            {
+                return RedirectToAction("AccessDenied", "AdminPage");
+            }          
         }
 
         public async Task<IActionResult> ProductFeed()
