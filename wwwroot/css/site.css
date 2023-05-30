@@ -45,3 +45,23 @@ body {
 .product-btn {
     border-radius: .5rem !important;
 }
+
+.admin-btn {
+    background-color: white;
+    font-size: 22px;
+    color: black;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: .1rem;
+    margin-top: .3rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.admin-btn:hover{
+    color: black;
+    background-color: #f1f1f1;
+}
+
