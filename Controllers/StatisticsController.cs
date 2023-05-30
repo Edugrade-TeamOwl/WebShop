@@ -19,20 +19,37 @@ namespace WebShop.Controllers
             this.shoppingCart = shoppingCart;
 
         }
-        public IActionResult OverView()
+        public IActionResult OverView(string search)
         {
             // Retrieve the list of orders from the database
-            IEnumerable<OrderDTO> orders = _appDbContext.Orders.Select(o => new OrderDTO
+            IQueryable<OrderDTO> query = _appDbContext.Orders.Select(o => new OrderDTO
             {
                 FirstName = o.FirstName,
                 LastName = o.LastName,
                 City = o.City,
                 ZipCode = o.ZipCode,
                 Adress = o.Adress
-            }).ToList();
+            });
 
-            return View(orders);
+            if (!string.IsNullOrEmpty(search))
+            {
+                // Filter the orders based on the search query
+                query = query.Where(o =>
+                    o.FirstName.Contains(search) ||
+                    o.LastName.Contains(search) ||
+                    o.City.Contains(search) ||
+                    o.ZipCode.Contains(search) ||
+                    o.Adress.Contains(search)
+                );
+            }
+
+            IEnumerable<OrderDTO> orders = query.ToList();
+
+            return View("OverView", orders);
         }
+
+
+
 
 
 

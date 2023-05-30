@@ -7,6 +7,13 @@
 
 <h1>Order Översikt</h1>
 
+<form method="get">
+    <div class="form-group">
+        <input type="text" name="search" class="form-control" placeholder="Search" value="@ViewBag.Search" />
+    </div>
+    <button type="submit" class="btn btn-primary">Sök</button>
+</form>
+
 @if (Model != null && Model.Any())
 {
     <table class="table">
@@ -39,3 +46,9 @@ else
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
