@@ -22,4 +22,19 @@ public class ShoppingCart
     {
         return cartItems;
     }
+
+
+    //Shopping cart item calculator
+    public decimal CalculateTotal()
+    {
+        List<Product> cartItems = GetCartItems();
+        decimal total = 0;
+
+        foreach (var item in cartItems)
+        {
+            total += item.ProductPrice; 
+        }
+
+        return total;
+    }
 }

@@ -11,8 +11,7 @@ namespace WebShop.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
-        //[Precision(18,2)]
-        //public decimal TotalOrderAmount { get; set; }
+        public decimal TotalOrderAmount { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string City { get; set; }

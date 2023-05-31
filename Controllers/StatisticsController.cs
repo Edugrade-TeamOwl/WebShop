@@ -28,7 +28,10 @@ namespace WebShop.Controllers
                 LastName = o.LastName,
                 City = o.City,
                 ZipCode = o.ZipCode,
-                Adress = o.Adress
+                Adress = o.Adress,
+                TotalOrderAmount = o.TotalOrderAmount
+
+
             });
 
             if (!string.IsNullOrEmpty(search))
@@ -39,7 +42,8 @@ namespace WebShop.Controllers
                     o.LastName.Contains(search) ||
                     o.City.Contains(search) ||
                     o.ZipCode.Contains(search) ||
-                    o.Adress.Contains(search)
+                    o.Adress.Contains(search) ||
+                    o.TotalOrderAmount.ToString().Contains(search)
                 );
             }
 

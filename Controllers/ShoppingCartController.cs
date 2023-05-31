@@ -21,9 +21,13 @@ namespace WebShop.Controllers
         public IActionResult ListCart()
         {
             List<Product> cartItems = shoppingCart.GetCartItems();
-            
+            decimal totalOrderAmount = shoppingCart.CalculateTotal();
+
+            ViewBag.TotalOrderAmount = totalOrderAmount;
+
             return View(cartItems);
         }
+
 
         [HttpPost]
         public IActionResult AddToCart(Product product)
