@@ -18,8 +18,18 @@ public class ShoppingCart
         cartItems.Add(item);
     }
 
+    public void EmptyCart()
+    {
+        cartItems.Clear();
+    }
+
+    public void RemoveCartItem(int i)
+    {
+        cartItems.RemoveAt(i);
+    }
     public List<Product> GetCartItems()
     {
         return cartItems;
     }
+
 }
