@@ -1,11 +1,18 @@
 ﻿@model IEnumerable<WebShop.Models.Product>
+@inject ShoppingCart shoppingCart
 
 @{
     ViewData["Title"] = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
 
-<h1>Produkter</h1>
+<a class="btn btn-warning mb-1" style="font-size: 1.5rem; float: right;" asp-area="" asp-controller="ShoppingCart" asp-action="ListCart">
+    <i class="bi bi-cart"></i> @shoppingCart.GetCartItems().Count()
+</a>
+<h1 class="mb-5">Produkter</h1>
+
 
 
 <div class="row align-items-start">

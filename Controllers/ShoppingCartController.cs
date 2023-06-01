@@ -50,7 +50,7 @@ namespace WebShop.Controllers
             }
 
             // Redirect to a different view or perform any other actions
-            return RedirectToAction("ListCart");
+            return RedirectToAction("ProductFeed", "product");
         }
         public async Task<IActionResult> Checkout()
         {
