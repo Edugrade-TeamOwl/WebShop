@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebShop.Areas.Identity.Data;
 using WebShop.Models;
+using WebShop.ViewModels.DTO;
 
 namespace WebShop.Controllers
 {
@@ -36,18 +37,32 @@ namespace WebShop.Controllers
             if (product != null)
             {
                 // Create a new cart item and add it to the shopping cart
-
-                shoppingCart.AddToCart(product);
+                var exist = shoppingCart.GetCartItem(product.ProductId.ToString());
+                if (exist != null) 
+                {
+                    exist.Quantity = exist.Quantity + 1;
+                }
+                else
+                {
+                    shoppingCart.AddToCart(product);
+                }
+                
             }
 
             // Redirect to a different view or perform any other actions
             return RedirectToAction("ListCart");
         }
-        public IActionResult Checkout()
+        public async Task<IActionResult> Checkout()
         {
-
-
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                return View();
+            }
+            else
+            {
+                return View("_LoginPartial");
+            }
         }
 
         public IActionResult EmptyCart()
@@ -61,6 +76,25 @@ namespace WebShop.Controllers
             shoppingCart.RemoveCartItem(i);
             return RedirectToAction("ListCart");
         }
+        public IActionResult AddQuantity(Guid i)
+        {
+            var item = shoppingCart.GetCartItem(i.ToString());
+            if (item != null)
+            {
+                item.Quantity = item.Quantity + 1;
+            }
+            return RedirectToAction("ListCart");
+        }
+        public IActionResult RemoveQuantity(Guid i) 
+        {
+            var item = shoppingCart.GetCartItem(i.ToString());
+            if (item != null && item.Quantity > 0)
+            {
+                item.Quantity = item.Quantity - 1;
+            }
+            return RedirectToAction("ListCart");
+        }
+
 
     }
 }

@@ -12,5 +12,7 @@ namespace WebShop.Models
         public string ProductDisctiption { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal ProductPrice { get; set; }
+        [NotMapped]
+        public int Quantity { get; set; }
     }
 }

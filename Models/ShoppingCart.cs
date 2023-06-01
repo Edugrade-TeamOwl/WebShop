@@ -22,6 +22,10 @@ public class ShoppingCart
     {
         return cartItems;
     }
+    public Product GetCartItem(string id)
+    {
+        return cartItems.FirstOrDefault(x => x.ProductId.ToString() == id);
+    }
 
 
     //Total price calc

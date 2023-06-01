@@ -25,5 +25,6 @@ namespace WebShop.Models
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         public virtual ApplicationUser User { get; set; }
+        public List<OrderDetail> orderDetails { get; set; }
     }
 }

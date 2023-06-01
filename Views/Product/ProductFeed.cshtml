@@ -9,7 +9,8 @@
 
 
 <div class="row align-items-start">
-    @foreach (var item in Model) {        
+    @foreach (var item in Model) {  
+    item.Quantity = 1;
     <div class='col-md-4 col-sm-6' >
             <div class='card text-white bg-primary mb-3'>
                 <div class="card-body">
@@ -24,6 +25,7 @@
                 <input type="hidden" name="ProductName" value="@item.ProductName" />
                 <input type="hidden" name="ProductDescription" value="@item.ProductDisctiption" />
                 <input type="hidden" name="ProductPrice" value="@item.ProductPrice" />
+                    <input type="hidden" name="Quantity" value="@item.Quantity" />
                 <!-- Add other input fields for additional properties if needed -->
                 <input type="submit" value="Add to Cart" />
             </form>

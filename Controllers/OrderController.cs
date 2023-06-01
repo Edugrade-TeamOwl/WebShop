@@ -28,31 +28,39 @@ namespace WebShop.Controllers
 
 
             var user = await _userManager.GetUserAsync(User);
-            var order = new Order
+            if (user != null)
             {
-                FirstName = orderDTO.FirstName,
-                LastName = orderDTO.LastName,
-                Adress = orderDTO.Adress,
-                City = orderDTO.City,
-                ZipCode = orderDTO.ZipCode,
-                OrderedAt = DateTime.Now,
-                UserId = user.Id,
-                TotalOrderAmount = totalOrderAmount,
+                var order = new Order
+                {
+                    FirstName = orderDTO.FirstName,
+                    LastName = orderDTO.LastName,
+                    Adress = orderDTO.Adress,
+                    City = orderDTO.City,
+                    ZipCode = orderDTO.ZipCode,
+                    OrderedAt = DateTime.Now,
+                    UserId = user.Id,
+                    TotalOrderAmount = totalOrderAmount,
 
-            };
-            _appDbContext.Add(order);
-            await _appDbContext.SaveChangesAsync();
-            List<OrderDetail> orderdetail = new List<OrderDetail>();
+                };
+                _appDbContext.Add(order);
+                await _appDbContext.SaveChangesAsync();
+                List<OrderDetail> orderdetail = new List<OrderDetail>();
 
-            foreach (var item in cartItems)
-            {
-                var detail = new OrderDetail { ProductId = item.ProductId, ProductQuantity = 1, OrderId = order.OrderId };
-                orderdetail.Add(detail);
+                foreach (var item in cartItems)
+                {
+                    var detail = new OrderDetail { ProductId = item.ProductId, ProductQuantity = item.Quantity, OrderId = order.OrderId };
+                    orderdetail.Add(detail);
+                }
+                _appDbContext.AddRange(orderdetail);
+                await _appDbContext.SaveChangesAsync();
+
+                return RedirectToAction("CheckoutComplete");
             }
-            _appDbContext.AddRange(orderdetail);
-            await _appDbContext.SaveChangesAsync();
+            else
+            {
+                return View("_LoginPartial");
+            }
 
-            return RedirectToAction("CheckoutComplete");
         }
         public IActionResult CheckoutComplete()
         {
