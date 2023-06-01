@@ -10,11 +10,14 @@
 
 <div class="row align-items-start">
     @foreach (var item in Model) {        
-    <div class='col-md-4 col-sm-6' id="product-cards">
-        <div class='product-card rounded shadow p-2' id="product-card-body">
-            <h3>@Html.DisplayFor(modelItem => item.ProductName)</h3>
+    <div class='col-md-4 col-sm-6' >
+            <div class='card text-white bg-primary mb-3'>
+                <div class="card-body">
+                <h3 class="card-header">@Html.DisplayFor(modelItem => item.ProductName)</h3>
+                <div class="card-text">
             <p>@Html.DisplayFor(modelItem => item.ProductDisctiption)</p>
             <p>@Html.DisplayFor(modelItem => item.ProductPrice)Kr</p>
+                </div>
             
             <form method="post" asp-action="AddToCart" asp-controller="ShoppingCart">
                 <input type="hidden" name="ProductId" value="@item.ProductId" />
@@ -24,6 +27,7 @@
                 <!-- Add other input fields for additional properties if needed -->
                 <input type="submit" value="Add to Cart" />
             </form>
+            </div>
         </div>
     </div>
     }

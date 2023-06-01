@@ -12,7 +12,7 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr class ="table-primary">
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
@@ -27,7 +27,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="table-primary">
             <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.ProductPrice)
             </td>
             <td>
-                <button class="product-btn" id="edit-btn"><a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a></button>
-                <button class="product-btn" id="details-btn"><a asp-action="Details" asp-route-id="@item.ProductId">Details</a></button>
-                <button class="product-btn" id="delete-btn"><a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a></button>
+                    <button class="btn btn-primary"><a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a></button>
+                <button class="btn btn-primary"><a asp-action="Details" asp-route-id="@item.ProductId">Details</a></button>
+                <button class="btn btn-danger"><a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a></button>
             </td>
         </tr>
 }
