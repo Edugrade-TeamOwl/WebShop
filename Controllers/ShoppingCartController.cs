@@ -50,5 +50,17 @@ namespace WebShop.Controllers
             return View();
         }
 
+        public IActionResult EmptyCart()
+        {
+            shoppingCart.EmptyCart();
+            return RedirectToAction("ListCart");
+        }
+
+        public IActionResult RemoveCartItem(int i)
+        {
+            shoppingCart.RemoveCartItem(i);
+            return RedirectToAction("ListCart");
+        }
+
     }
 }

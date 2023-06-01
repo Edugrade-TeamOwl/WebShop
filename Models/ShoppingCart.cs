@@ -37,4 +37,14 @@ public class ShoppingCart
 
         return total;
     }
+
+    public void EmptyCart()
+    {
+        cartItems.Clear();
+    }
+
+    public void RemoveCartItem(int i)
+    {
+        cartItems.RemoveAt(i);
+    }
 }
