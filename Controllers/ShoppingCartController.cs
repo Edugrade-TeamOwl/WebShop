@@ -21,9 +21,13 @@ namespace WebShop.Controllers
         public IActionResult ListCart()
         {
             List<Product> cartItems = shoppingCart.GetCartItems();
-            
+            decimal totalOrderAmount = shoppingCart.CalculateTotal();
+
+            ViewBag.TotalOrderAmount = totalOrderAmount;
+
             return View(cartItems);
         }
+
 
         [HttpPost]
         public IActionResult AddToCart(Product product)
@@ -35,25 +39,16 @@ namespace WebShop.Controllers
 
                 shoppingCart.AddToCart(product);
             }
-            
+
             // Redirect to a different view or perform any other actions
             return RedirectToAction("ListCart");
         }
         public IActionResult Checkout()
-        {            
+        {
+
+
             return View();
         }
 
-        public IActionResult EmptyCart()
-        {
-            shoppingCart.EmptyCart();
-            return RedirectToAction("ListCart");
-        }
-
-        public IActionResult RemoveCartItem(int i)
-        {
-            shoppingCart.RemoveCartItem(i);
-            return RedirectToAction("ListCart");
-        }
     }
 }

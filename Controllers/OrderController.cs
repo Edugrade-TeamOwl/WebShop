@@ -24,6 +24,8 @@ namespace WebShop.Controllers
         public async Task<IActionResult> CreateOrder(OrderDTO orderDTO)
         {
             List<Product> cartItems = shoppingCart.GetCartItems();
+            decimal totalOrderAmount = shoppingCart.CalculateTotal();
+
 
             var user = await _userManager.GetUserAsync(User);
             var order = new Order
@@ -34,7 +36,9 @@ namespace WebShop.Controllers
                 City = orderDTO.City,
                 ZipCode = orderDTO.ZipCode,
                 OrderedAt = DateTime.Now,
-                UserId = user.Id
+                UserId = user.Id,
+                TotalOrderAmount = totalOrderAmount,
+
             };
             _appDbContext.Add(order);
             await _appDbContext.SaveChangesAsync();

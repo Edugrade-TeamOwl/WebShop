@@ -18,18 +18,23 @@ public class ShoppingCart
         cartItems.Add(item);
     }
 
-    public void EmptyCart()
-    {
-        cartItems.Clear();
-    }
-
-    public void RemoveCartItem(int i)
-    {
-        cartItems.RemoveAt(i);
-    }
     public List<Product> GetCartItems()
     {
         return cartItems;
     }
 
+
+    //Total price calc
+    public decimal CalculateTotal()
+    {
+        List<Product> cartItems = GetCartItems();
+        decimal total = 0;
+
+        foreach (var item in cartItems)
+        {
+            total += item.ProductPrice;
+        }
+
+        return total;
+    }
 }
