@@ -9,9 +9,10 @@
 
 
 <div class="row align-items-start">
-    @foreach (var item in Model) {        
-    <div class='col-md-4 col-sm-6'>
-        <div class='product-card rounded shadow p-2'>
+    @foreach (var item in Model) {
+        item.Quantity = 1;
+        <div class='col-md-4 col-sm-6' id="product-cards">
+        <div class='product-card rounded shadow p-2' id="product-card-body">
             <h3>@Html.DisplayFor(modelItem => item.ProductName)</h3>
             <p>@Html.DisplayFor(modelItem => item.ProductDisctiption)</p>
             <p>@Html.DisplayFor(modelItem => item.ProductPrice)Kr</p>
@@ -21,6 +22,7 @@
                 <input type="hidden" name="ProductName" value="@item.ProductName" />
                 <input type="hidden" name="ProductDescription" value="@item.ProductDisctiption" />
                 <input type="hidden" name="ProductPrice" value="@item.ProductPrice" />
+                    <input type="hidden" name="Quantity" value="@item.Quantity" />
                 <!-- Add other input fields for additional properties if needed -->
                 <input type="submit" value="Add to Cart" />
             </form>

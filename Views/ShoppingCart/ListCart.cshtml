@@ -20,6 +20,9 @@
                 <th>
                     Pris
                 </th>
+                <th>
+                    Antal
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -38,14 +41,24 @@
                     <td>
                         @Html.DisplayFor(modelItem => @Model[i].ProductPrice)
                     </td>
+                    <td>
+                        <a asp-action="RemoveQuantity" asp-route-i="@Model[i].ProductId" style="margin-right:5px; font-size:medium; text-decoration:none;">-</a>
+                        @Html.DisplayFor(modelItem => @Model[i].Quantity, new {type="number"})
+                        <a asp-action="AddQuantity" asp-route-i="@Model[i].ProductId" style="margin-left:5px; font-size:medium; text-decoration:none;">+</a>
+                    </td>
+                    <td>
+                        <a asp-action="RemoveCartItem" asp-route-i="@i">Ta bort</a>
+                    </td>
                 </tr>
-
-                totalPrice += @Model[i].ProductPrice;
+                
+                totalPrice += @Model[i].ProductPrice * Model[i].Quantity;
             }
         </tbody>
 
     </table>
-
+    
     <h4>Totalt: @totalPrice Kr</h4>
+    <a class="btn btn-secondary" asp-area="" asp-action="EmptyCart">Töm kundvagn</a>
     <input class="btn btn-primary" type="submit" value="Till Betalning" />
+    
 }

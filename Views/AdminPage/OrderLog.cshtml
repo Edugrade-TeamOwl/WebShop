@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebShop.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Order Logg</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Namn
+            </th>
+            <th>
+                Skapad
+            </th>
+            <th>
+                Pris
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.FirstName + " " + item.LastName)*@
+                    @item.FirstName @item.LastName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalOrderAmount)
+                </td>
+                <td>
+                    <button class="product-btn" id="edit-btn"><a asp-action="OrderDetails" asp-route-id="@item.OrderId">Detaljer</a></button>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
