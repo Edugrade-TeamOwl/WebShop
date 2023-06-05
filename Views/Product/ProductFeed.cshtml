@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<WebShop.Models.Product>
 @inject ShoppingCart shoppingCart
-
+@inject CurrencyConverter currency
 @{
     ViewData["Title"] = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,7 +24,7 @@
                 <h3 class="card-header">@Html.DisplayFor(modelItem => item.ProductName)</h3>
                 <div class="card-text">
             <p>@Html.DisplayFor(modelItem => item.ProductDisctiption)</p>
-            <p>@Html.DisplayFor(modelItem => item.ProductPrice)Kr</p>
+                        <p>@Html.DisplayFor(modelItem => item.ProductPrice)Kr / @currency.ConvertToEUR(item.ProductPrice) Euro / @currency.ConvertToUSD(item.ProductPrice) USD</p>
                 </div>
             
             <form method="post" asp-action="AddToCart" asp-controller="ShoppingCart">

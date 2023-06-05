@@ -15,7 +15,7 @@ namespace WebShop
                 GetExchangeRate();
             }
 
-            return sek * euroRate;
+            return Math.Round(sek * euroRate, 2);
         }
         public decimal ConvertToUSD(decimal sek)
         {
@@ -24,7 +24,7 @@ namespace WebShop
                 GetExchangeRate();
             }
 
-            return sek * usdRate;
+            return Math.Round( sek * usdRate,2);
         }
 
         private async void GetExchangeRate()

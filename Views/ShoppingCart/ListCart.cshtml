@@ -1,5 +1,5 @@
 ﻿@model IList<WebShop.Models.Product>
-
+@inject CurrencyConverter currency
 @{
     ViewData["Title"] = "Kundvagn";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -57,7 +57,7 @@
 
     </table>
     
-    <h4>Totalt: @totalPrice Kr</h4>
+    <h4>Totalt: @totalPrice Kr / @currency.ConvertToEUR(totalPrice) Euro / @currency.ConvertToUSD(totalPrice) USD</h4>
     <a class="btn btn-secondary" asp-area="" asp-action="EmptyCart">Töm kundvagn</a>
     <input class="btn btn-primary" type="submit" value="Till Betalning" />
     
