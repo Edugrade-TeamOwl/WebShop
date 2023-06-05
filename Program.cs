@@ -18,7 +18,7 @@ namespace WebShop
             // Register ShoppingCart as a singleton service
             builder.Services.AddSingleton<ShoppingCart>();
 
-            // Register ShoppingCart as a singleton service
+            // Register CurrencyConverter as a singleton service
             builder.Services.AddSingleton<CurrencyConverter>();
 
             // Add services to the container.
