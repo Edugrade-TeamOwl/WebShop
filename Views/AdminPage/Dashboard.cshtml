@@ -1,25 +1,36 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "AdminPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+<link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
 
-</style>
+
 
 <h1>Admin</h1>
-<table class="table">
-    <tr>
-        <td><a class="text-decoration-none " asp-area="" asp-controller="AdminPage" asp-action="OrderLog">Order Logg</a></td>
-    </tr>
-    <tr>
-        <td><a class="text-decoration-none " asp-area="" asp-controller="AdminPage" asp-action="Statistics">Statistik</a></td>
-    </tr>
-    <tr>
-        <td><a class="text-decoration-none " asp-area="" asp-controller="Product" asp-action="Index">Lagerhantering</a></td>
-    </tr>
-</table>
-    
 
-    
+<div class="card-group">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-card-checklist"></i> Ordrar</h5>
+            <p class="card-text">Hantera Ordrar</p>
+            <a href="@Url.Action("OrderLog", "AdminPage")" class="btn btn-primary">Hantera</a>
+        </div>
+    </div>
 
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-bar-chart"></i> Statistik</h5>
+            <p class="card-text">Visa Sälj Statistik</p>
+            <a href="@Url.Action("Statistics", "AdminPage")" class="btn btn-primary">Visa</a>
+        </div>
+    </div>
 
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><i class="bi bi-archive"></i> Lager</h5>
+            <p class="card-text">Hantera Lager</p>
+            <a href="@Url.Action("Index", "Product")" class="btn btn-primary">Hantera</a>
+        </div>
+    </div>
+</div>
