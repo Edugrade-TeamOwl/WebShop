@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using WebShop.Areas.Identity.Data;
 using WebShop.Models;
 using WebShop.ViewModels.DTO;
@@ -59,6 +60,32 @@ namespace WebShop.Controllers
 
             return View(order);
         }
+
+        public ActionResult Statistics()
+        {
+            DateTime today = DateTime.Today;
+
+            List<Order> ordersToday = _Context.Orders
+                .Where(o => o.OrderedAt.Date == today)
+                .ToList();
+
+            decimal totalAmountSoldToday = ordersToday.Sum(o => o.TotalOrderAmount);
+            decimal totalEarningsOverall = _Context.Orders.Sum(o => o.TotalOrderAmount);
+
+            int totalNumberOfOrders = _Context.Orders.Count();
+            int numberOfOrdersToday = ordersToday.Count;
+
+            ViewBag.TotalAmountSoldToday = totalAmountSoldToday;
+            ViewBag.NumberOfOrdersToday = numberOfOrdersToday;
+            ViewBag.TotalEarningsOverall = totalEarningsOverall;
+            ViewBag.TotalNumberOfOrders = totalNumberOfOrders;
+
+            return View();
+        }
+
+
+
+
 
 
 

@@ -1,0 +1,33 @@
+﻿@model WebShop.Models.Order
+
+<h1>Statistik</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Statistik för idag</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Försäljningsbelopp: @ViewBag.TotalAmountSoldToday kr</p>
+                    <p class="card-text">Ordrar: @ViewBag.NumberOfOrdersToday</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Total Statistik</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Försäljningsbelopp: @ViewBag.TotalEarningsOverall kr</p>
+                    <p class="card-text">Ordrar: @ViewBag.TotalNumberOfOrders</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
